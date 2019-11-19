@@ -1,5 +1,7 @@
-# Don't track Jupyter generated files
+# Don't track Python/Jupyter generated files
+__pycache__
 .ipynb_checkpoints
+
 
 # Don't track big csv files
 *.csv
