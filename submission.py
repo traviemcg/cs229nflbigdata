@@ -110,8 +110,8 @@ clf.fit(train[features], le.transform(train['Yards']))
 
 def squash(yard_cdf, yard_remaining):
     squash_cdf = yard_cdf.copy()
-    squash_cdf[199-(100 - yard_remaining):] = 1
-    squash_cdf[0:yard_remaining-1] = 0 
+    squash_cdf[0, 199-(100 - yard_remaining):] = 1
+    squash_cdf[0, 0:yard_remaining-1] = 0 
     return squash_cdf
 
 def predsToPMF(preds):
@@ -127,7 +127,6 @@ iter_test = env.iter_test()
 for (test, sample_test_pred) in iter_test:
     # Load and preprocess test sample
     test = test[test['NflIdRusher']==test['NflId']]
-    test.reset_index(drop=True, inplace=True)
     test, _ = preprocess(test, tables)
     
     # Use classifier to make predictions
